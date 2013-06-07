@@ -1,0 +1,41 @@
+{
+    "name": "ClibeanConfig",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "account": {
+            "type": "string",
+            "description": "Your beanstalk account.",
+            "required": true
+        },
+        "auth": {
+            "type": "object",
+            "description": "Package name, including 'vendor-name/' prefix.",
+            "required": true,
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "description": "Your beanstalk username.",
+                    "required": true
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Your beanstalk password.",
+                    "required": true
+                }
+            }
+        },
+        "project": {
+            "type": "object",
+            "description": "Beanstalk project properties ",
+            "required": false,
+            "properties": {
+                "repo": {
+                    "type": "string",
+                    "description": "Repository names." ,
+                    "required" :true
+                }
+            }
+        }
+    }
+}
