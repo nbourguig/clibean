@@ -116,35 +116,16 @@ ART;
     // Environnement helpers
     //
 
-    public static function getEnvironnement()
+    public static function getEnvironement()
     {
         return static::$env;
     }
 
-    public static function isEnvironnement($env)
+    public static function isEnvironement($env)
     {
         return static::$env == $env;
     }
 
-    public static function is_local()
-    {
-        return static::isEnvironnement(self::ENV_LOCAL);
-    }
-
-    public static function is_recette()
-    {
-        return static::isEnvironnement(self::ENV_RECETTE);
-    }
-
-    public static function is_prod()
-    {
-        return static::isEnvironnement(self::ENV_PROD);
-    }
-
-    public static function is_preprod()
-    {
-        return static::isEnvironnement(self::ENV_PREPROD);
-    }
 
     public static function getWorkingDirectory()
     {
