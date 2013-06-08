@@ -23,7 +23,7 @@ class JsonFile
      */
     public function parse()
     {
-        $clibeanFile = Config::getWorkingDirectory() . '/clibean.json';
+        $clibeanFile = $this->getClibeanFile();
         $data        = json_decode(file_get_contents($clibeanFile));
 
         $schemaFile = Config::getApplicationDirectory() . '/resources/clibean-schema.json';
@@ -47,6 +47,15 @@ class JsonFile
         // Just feed Laravel config, so we can do thing like
         // Config::get('clibean.auth.password')
         Config::set('clibean', $this->toArray($data));
+    }
+
+    protected function getClibeanFile()
+    {
+        $file = Config::getWorkingDirectory() . '/clibean.json';
+        if (!file_exists($file))
+        {
+             throw new \Exception('No clibean.json file found');
+        }
     }
 
     /**

@@ -21,12 +21,19 @@ abstract class AbstractCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // Json file
-        $this->jsonFile = new JsonFile();
-        $this->jsonFile->parse();
-
         // Output
         $this->output = $output;
+
+        // Json file
+        try
+        {
+            $this->jsonFile = new JsonFile();
+            $this->jsonFile->parse();
+        }
+        catch (\Exception $e)
+        {
+            $this->error("" . $e->getMessage());
+        }
     }
 
 
