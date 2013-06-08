@@ -45,14 +45,13 @@ class BeanstalkRepositoryReleases extends BeanstalkCommand
         {
             if (!empty($release['release']))
             {
-                $this->displayRelease($release['release']);
+                $this->display($release['release']);
             }
         }
     }
 
-    protected function displayRelease($release)
+    protected function display($release)
     {
-
         $this->output->writeln("#" . $release['id'] . " : " . $release['created_at']);
         $this->output->writeln('------------------------------------------------------');
         $this->output->writeln('By : ' . $release['author']);
@@ -60,8 +59,6 @@ class BeanstalkRepositoryReleases extends BeanstalkCommand
         $this->output->writeln('State : ' . $release['state']);
         $this->output->writeln('Commit: ' . $release['environment_revision']);
         $this->output->writeln("");
-
-
     }
 
 }
