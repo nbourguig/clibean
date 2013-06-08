@@ -19,6 +19,7 @@ $application->addCommands(array(
     new Command\BeanstalkRepositoryInfos(),
     new Command\BeanstalkRepositoryReleases(),
     new Command\BeanstalkRepositoryList(),
+    new Command\BeanstalkRepositoryEnvironments(),
 ));
 
 // run console
