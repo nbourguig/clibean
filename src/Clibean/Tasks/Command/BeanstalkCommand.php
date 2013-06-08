@@ -82,4 +82,10 @@ class BeanstalkCommand extends AbstractCommand
 
         return $repo;
     }
+
+    protected function getCurrentRepoUnlessSpecified(InputInterface $input)
+    {
+        $argumentRepo = $input->getArgument('repository');
+        return $argumentRepo ? $argumentRepo : $this->getRepo();
+    }
 }
