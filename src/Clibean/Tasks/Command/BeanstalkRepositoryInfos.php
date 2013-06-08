@@ -28,7 +28,6 @@ class BeanstalkRepositoryInfos extends BeanstalkCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         parent::execute($input, $output);
-
         $repo = $this->getCurrentRepoUnlessSpecified($input);
 
         // Title

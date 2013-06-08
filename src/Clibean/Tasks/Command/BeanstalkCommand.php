@@ -1,6 +1,7 @@
 <?php
 namespace Clibean\Tasks\Command;
 
+use Guzzle\Http\Exception\ClientErrorResponseException;
 use Guzzle\Plugin\CurlAuth\CurlAuthPlugin;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -54,10 +55,17 @@ class BeanstalkCommand extends AbstractCommand
 
     protected function get()
     {
-        $uri           = $this->getMethodUri();
-        $this->request = $this->client->get($uri);
-        $response      = $this->request->send();
-        return $response->json();
+        try
+        {
+            $uri           = $this->getMethodUri();
+            $this->request = $this->client->get($uri);
+            $response      = $this->request->send();
+            return $response->json();
+        }
+        catch (ClientErrorResponseException $e)
+        {
+            $this->error("Exception occurred [".$e->getMessage()."].");
+        }
     }
 
 

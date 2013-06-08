@@ -2,6 +2,7 @@
 namespace Clibean\Tasks\Command;
 
 use Clibean\Components\Config;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -11,19 +12,23 @@ class BeanstalkRepositoryReleases extends BeanstalkCommand
     protected function configure()
     {
         $description = '';
-        $description .= 'Get releases of repository ';
+        $description .= 'Get releases of current or specified repository ';
 
         $this
             ->setName('repo:releases')
-            ->setDescription($description);
+            ->setDescription($description)
+            ->addArgument(
+                'repository',
+                InputArgument::OPTIONAL,
+                'Repository name'
+            );
     }
 
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         parent::execute($input, $output);
-
-        $repo = $this->getRepo();
+        $repo = $this->getCurrentRepoUnlessSpecified($input);
 
         // Title
         $this->title('Current repo releases');
