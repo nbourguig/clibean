@@ -51,11 +51,13 @@ class JsonFile
 
     protected function getClibeanFile()
     {
-        $file = Config::getWorkingDirectory() . '/clibean.json';
+        $file = 'clibean.json';
         if (!file_exists($file))
         {
              throw new \Exception('No clibean.json file found');
         }
+
+        return $file;
     }
 
     /**
